@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kiruthika M – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #F8F7F4;
+      --ink: #1A1A2E;
+      --accent: #7C5CBF;
+      --accent-light: #EDE8F8;
+      --muted: #7A7A8C;
+      --border: #E2E0DA;
+      --card: #FFFFFF;
+      --tag-bg: #EDE8F8;
+      --tag-text: #5A3FA0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 5vw;
+      background: rgba(248,247,244,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 5vw 4rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-bio {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 520px; line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-contacts {
+      display: flex; flex-wrap: wrap; gap: 1.25rem;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    .hero-contacts a {
+      color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .hero-contacts a:hover { color: var(--accent); }
+    .hero-contacts span.ico { font-size: 1rem; }
+    .hero-divider {
+      width: 64px; height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 900px; margin: 0 auto;
+      padding: 5rem 5vw;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      line-height: 1.2;
+    }
+
+    /* ── ABOUT / OBJECTIVE ── */
+    .about-block {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.8;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .edu-item {
+      display: grid; grid-template-columns: 110px 1fr;
+      gap: 1.5rem; align-items: start;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+    }
+    .edu-year {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--accent); padding-top: 0.2rem;
+    }
+    .edu-school {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem; color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+    .edu-degree { font-size: 0.85rem; color: var(--muted); }
+    .edu-score {
+      display: inline-block; margin-top: 0.5rem;
+      font-size: 0.75rem; font-weight: 700;
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 0.2rem 0.7rem; border-radius: 100px;
+    }
+
+    /* ── PROJECTS ── */
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .project-card:hover {
+      box-shadow: 0 10px 40px rgba(124,92,191,0.12);
+      transform: translateY(-3px);
+    }
+    .project-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem; color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+    .project-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.7; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tag {
+      font-size: 0.7rem; font-weight: 600;
+      background: var(--tag-bg); color: var(--tag-text);
+      padding: 0.2rem 0.65rem; border-radius: 100px;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+    .skill-group {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+    }
+    .skill-group-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-pill {
+      font-size: 0.8rem; font-weight: 500;
+      border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 0.3rem 0.7rem;
+      color: var(--ink); background: var(--bg);
+    }
+
+    /* ── CERTIFICATES ── */
+    .cert-list { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+    .cert-card {
+      display: flex; align-items: center; gap: 0.85rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.4rem;
+      font-size: 0.88rem; font-weight: 500; color: var(--ink);
+    }
+    .cert-card span.ico { font-size: 1.2rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 900px; margin: 0 auto;
+      padding: 2.5rem 5vw 3.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer .foot-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem; color: var(--ink);
+    }
+    footer .foot-note { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── SCROLL FADE ── */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .project-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .edu-item { grid-template-columns: 1fr; gap: 0.4rem; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-name">Kiruthika M</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">BCA Final Year · SASTRA University</div>
+    <h1>Kiruthika <em>M.</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-bio">
+      A computer application student with a hands-on eye for web development and machine learning — building things that are both functional and thoughtful.
+    </p>
+    <div class="hero-contacts">
+      <a href="tel:+919597348227"><span class="ico">📞</span> +91 9597348227</a>
+      <a href="mailto:harinilatha2005@gmail.com"><span class="ico">✉️</span> harinilatha2005@gmail.com</a>
+      <span><span class="ico">📍</span> Kabishthalam, TN</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about" class="fade-in">
+    <div class="section-label">Objective</div>
+    <h2 class="section-title">What I'm looking for</h2>
+    <div class="about-block">
+      I am a final-year BCA student at SASTRA University seeking a challenging position in a reputed organisation where I can apply my technical knowledge, explore new technologies, and grow professionally while contributing meaningfully to the team.
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="fade-in">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic background</h2>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-year">2023 – 2026</div>
+        <div>
+          <div class="edu-school">SASTRA University Deemed University</div>
+          <div class="edu-degree">Bachelor of Computer Application (BCA)</div>
+          <span class="edu-score">CGPA 7.1 · till 5th semester</span>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2022 – 2023</div>
+        <div>
+          <div class="edu-school">St. Joseph Girls Hr. Secondary School</div>
+          <div class="edu-degree">Higher Secondary Certificate</div>
+          <span class="edu-score">77%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="fade-in">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Things I've built</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-icon">🏅</div>
+        <div class="project-title">Sports Club Website</div>
+        <p class="project-desc">
+          Designed and developed a sports club website with sections for events, membership, and schedules. Implemented responsive layout and AOS scroll animations for a smooth user experience.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">AOS Animations</span>
+          <span class="tag">Responsive Design</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🔐</div>
+        <div class="project-title">IoT DoS Attack Detection via ML</div>
+        <p class="project-desc">
+          Built an anomaly-based Intrusion Detection System (IDS) to identify DoS attacks in IoT networks. Benchmarked XGBoost, Random Forest, Isolation Forest, and LightGBM — selected LightGBM for its speed and precision. Evaluated using accuracy, precision, recall, and F1-score.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">LightGBM</span>
+          <span class="tag">IDS</span>
+          <span class="tag">IoT Security</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="fade-in">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Technical</div>
+        <div class="skill-pills">
+          <span class="skill-pill">HTML</span>
+          <span class="skill-pill">CSS</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">VS Code</span>
+          <span class="skill-pill">MS Word</span>
+          <span class="skill-pill">MS Excel</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Coursework</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Operating Systems</span>
+          <span class="skill-pill">Computer Networks</span>
+        </div>
+      </div>
+      <div class="skill-group" style="grid-column: 1 / -1;">
+        <div class="skill-group-label">Soft Skills</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Communication</span>
+          <span class="skill-pill">Teamwork</span>
+          <span class="skill-pill">Problem Solving</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="fade-in">
+    <div class="section-label">Certificates</div>
+    <h2 class="section-title">Credentials</h2>
+    <div class="cert-list">
+      <div class="cert-card"><span class="ico">📊</span> MS Word & Excel</div>
+      <div class="cert-card"><span class="ico">🛡️</span> Ethical Hacking Workshop</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="foot-name">Kiruthika M</span>
+    <span class="foot-note">BCA · SASTRA University · Kabishthalam, TN</span>
+  </footer>
+
+  <script>
+    // Scroll fade-in
+    const els = document.querySelectorAll('.fade-in');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }});
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
